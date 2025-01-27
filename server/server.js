@@ -35,7 +35,7 @@ const server = app.listen(PORT, () => {
 // Set up Socket.io
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000", // Frontend URL
+    origin: "https://chirp-dpgg.vercel.app/", // Frontend URL
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
   },
