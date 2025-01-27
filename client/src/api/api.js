@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-const url = "https://chirp-delta-dun.vercel.app";
+const url = "https://chirp-wcpc.onrender.com";
 export const loginapi = async (logindetails) => {
   try {
     const res = await fetch(`${url}/api/user/login`, {
