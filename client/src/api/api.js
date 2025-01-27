@@ -1,6 +1,6 @@
 import { toast } from "react-toastify";
 
-const url = "http://localhost:5000";
+const url = "https://chirp-delta-dun.vercel.app";
 export const loginapi = async (logindetails) => {
   try {
     const res = await fetch(`${url}/api/user/login`, {
