@@ -23,7 +23,7 @@ function Chatbox() {
   const messagesEndRef = useRef(null); // Ref for the last message
 
   useEffect(() => {
-    const socket = io("https://chirp-wcpc.onrender.com", {
+    socket = io("https://chirp-wcpc.onrender.com", {
       transports: ["websocket", "polling"],
     });
 
