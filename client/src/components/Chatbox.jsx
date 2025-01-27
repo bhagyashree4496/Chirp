@@ -23,7 +23,10 @@ function Chatbox() {
   const messagesEndRef = useRef(null); // Ref for the last message
 
   useEffect(() => {
-    socket = io("https://chirp-delta-dun.vercel.app");
+    const socket = io("https://chirp-delta-dun.vercel.app", {
+      transports: ["websocket", "polling"],
+    });
+
     console.log("Socket initialized:", socket);
     socket.emit("setup", user);
     socket.on("collection", () => {
