@@ -16,12 +16,11 @@ const Home = () => {
       <h1 className="flex-1 text-center text-primary font-bold text-4xl mb-8">
         Chirp
       </h1>
-      <div className="max-w-md w-[50vw] mx-auto p-6 border rounded-lg shadow-lg ">
-        {/* Tabs */}
+      <div className="max-w-md w-[50vw] mx-auto p-6 border rounded-lg shadow-lg h-[60vh]">
         <div className="tabs mb-4">
           <a
             className={`tab tab-bordered ${
-              activeTab === "signIn" ? "tab-active" : ""
+              activeTab === "signIn" ? "bg-primary text-white" : ""
             }`}
             onClick={() => handleTabSwitch("signIn")}
           >
@@ -29,7 +28,7 @@ const Home = () => {
           </a>
           <a
             className={`tab tab-bordered ${
-              activeTab === "register" ? "tab-active" : ""
+              activeTab === "register" ? "bg-primary text-white" : ""
             }`}
             onClick={() => handleTabSwitch("register")}
           >
@@ -68,7 +67,9 @@ const SignInForm = () => {
   return (
     <>
       {loading ? (
-        <span className="loading loading-ring loading-lg"></span>
+        <div className="flex justify-center h-full w-full">
+          <span className=" loading loading-ring loading-lg text-primary"></span>
+        </div>
       ) : (
         <form onSubmit={handleLogin}>
           <div className="mb-4">
@@ -138,7 +139,9 @@ const RegisterForm = () => {
   return (
     <>
       {loading ? (
-        <span className="loading loading-ring loading-lg"></span>
+        <div className="flex justify-center h-full w-full">
+          <span className=" loading loading-ring loading-lg text-primary"></span>
+        </div>
       ) : (
         <form onSubmit={handleSignup}>
           <div className="mb-4">
