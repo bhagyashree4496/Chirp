@@ -16,7 +16,7 @@ const Home = () => {
       <h1 className="flex-1 text-center text-primary font-bold text-4xl mb-8">
         Chirp
       </h1>
-      <div className="max-w-md w-[50vw] mx-auto p-6 border rounded-lg shadow-lg h-[60vh]">
+      <div className="max-w-md md:w-[50vw] mx-auto p-6 border rounded-lg shadow-lg h-[60vh]">
         <div className="tabs mb-4">
           <a
             className={`tab tab-bordered ${

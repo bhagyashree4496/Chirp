@@ -160,27 +160,64 @@ function Chatbox() {
                     </div>
                   ))
               : messages?.map((message) => (
-                  <div
-                    key={message._id}
-                    className={`chat ${
-                      message.sender._id === user._id
-                        ? "chat-end"
-                        : "chat-start"
-                    }`}
-                  >
-                    <div className="chat-image avatar">
-                      <div className="w-10 rounded-full">
-                        <img
-                          alt="Avatar"
-                          src={`https://ui-avatars.com/api/?name=${message.sender.name}`}
-                        />
-                      </div>
-                    </div>
-                    <div className="chat-header">
-                      {message.sender.name}
-                      <time className="text-xs opacity-50">12:46</time>
-                    </div>
-                    <div className="chat-bubble">{message.content}</div>
+                  <div className="flex-1 p-4 overflow-y-auto">
+                    {Loading
+                      ? Array(10)
+                          .fill()
+                          .map((_, index) => (
+                            <div
+                              key={index}
+                              className="flex w-52 flex-col gap-4 mt-4"
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+                                <div className="flex flex-col gap-4">
+                                  <div className="skeleton h-4 w-20"></div>
+                                  <div className="skeleton h-4 w-28"></div>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                      : messages?.map((message) => {
+                          // Format the time from createdAt
+                          const messageTime = new Date(
+                            message.createdAt
+                          ).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          });
+
+                          return (
+                            <div
+                              key={message._id}
+                              className={`chat ${
+                                message.sender._id === user._id
+                                  ? "chat-end"
+                                  : "chat-start"
+                              }`}
+                            >
+                              <div className="chat-image avatar">
+                                <div className="w-10 rounded-full">
+                                  <img
+                                    alt="Avatar"
+                                    src={`https://ui-avatars.com/api/?name=${message.sender.name}`}
+                                  />
+                                </div>
+                              </div>
+                              <div className="chat-header">
+                                {message.sender.name}
+                                <time className="text-xs opacity-50 ml-2">
+                                  {messageTime}
+                                </time>{" "}
+                                {/* Message time */}
+                              </div>
+                              <div className="chat-bubble">
+                                {message.content}
+                              </div>
+                            </div>
+                          );
+                        })}
+                    <div ref={messagesEndRef}></div> {/* Scroll target */}
                   </div>
                 ))}
             <div ref={messagesEndRef}></div> {/* Scroll target */}

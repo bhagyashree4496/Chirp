@@ -38,25 +38,25 @@ function Chats() {
         <h1 className="flex-1 text-center text-primary font-bold text-3xl">
           Chirp
         </h1>
-        <div className="flex items-center ">
-          <div className="dropdown dropdown-end">
+        <div className="flex items-center space-x-4">
+          <div className="dropdown dropdown-end ">
             <div className="indicator">
               {notifNumb > 0 && (
-                <span className="indicator-item badge badge-primary ">
+                <span className="indicator-item badge badge-error rounded-full text-white">
                   {notifNumb}
                 </span>
               )}
               <div
                 tabIndex={0}
                 role="button"
-                className="rounded-full bg-primary text-white  btn "
+                className="rounded-full bg-primary text-white  btn btn-primary"
               >
                 <IoIosNotifications />
               </div>
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content menu bg-base-100 rounded-box z-[1] min-w-[30vw] p-4 shadow"
+              className="dropdown-content menu bg-base-100 rounded-box z-[1] min-w-[30vw] p-4 shadow "
             >
               {notifications.length > 0 ? (
                 notifications.map((n) => (
@@ -82,11 +82,11 @@ function Chats() {
             </ul>
           </div>
 
-          <div className="dropdown dropdown-end">
+          <div className="dropdown dropdown-end ">
             <div
               tabIndex={0}
               role="button"
-              className="btn m-1 bg-primary text-white"
+              className="btn m-1 bg-primary text-white btn-primary"
             >
               <FaRegUser />
               <MdArrowDropDown />

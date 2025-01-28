@@ -45,48 +45,56 @@ function MyChats() {
       {/* Chats List */}
       <div className="flex-1 overflow-y-auto ">
         {chats?.length ? (
-          chats.map((chat) => (
-            <div
-              onClick={() => setSelectedChat(chat)}
-              key={chat._id}
-              className={`flex items-center justify-between p-3 mb-2 bg-gray-700 ${
-                selectedChat?._id === chat._id && "bg-primary text-white"
-              } rounded-lg shadow hover:shadow-md cursor-pointer`}
-            >
-              <div className="flex items-center ">
-                {/* Avatar */}
-                <div>
-                  <div className="w-12 h-12 rounded-full  ">
-                    <img
-                      className="rounded-full"
-                      src={`https://ui-avatars.com/api/?name=${chat.chatName}`}
-                      alt="avatar"
-                    />
+          chats.map((chat) => {
+            const messageTime = new Date(
+              chat.latestMessage?.createdAt
+            ).toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            });
+            return (
+              <div
+                onClick={() => setSelectedChat(chat)}
+                key={chat._id}
+                className={`flex items-center justify-between p-3 mb-2 bg-gray-700 ${
+                  selectedChat?._id === chat._id && "bg-primary text-white"
+                } rounded-lg shadow hover:shadow-md cursor-pointer`}
+              >
+                <div className="flex items-center ">
+                  {/* Avatar */}
+                  <div>
+                    <div className="w-12 h-12 rounded-full  ">
+                      <img
+                        className="rounded-full"
+                        src={`https://ui-avatars.com/api/?name=${chat.chatName}`}
+                        alt="avatar"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Chat Info */}
+                  <div className="ml-4">
+                    <h2 className="text-lg font-semibold">
+                      {chat.isGroupChat
+                        ? chat.chatName
+                        : chat.users.find((u) => u._id !== user._id).name}
+                    </h2>
+                    <p className="text-sm text-gray-500 truncate w-40">
+                      {chat?.latestMessage?.content}
+                    </p>
                   </div>
                 </div>
 
-                {/* Chat Info */}
-                <div className="ml-4">
-                  <h2 className="text-lg font-semibold">
-                    {chat.isGroupChat
-                      ? chat.chatName
-                      : chat.users.find((u) => u._id !== user._id).name}
-                  </h2>
-                  <p className="text-sm text-gray-500 truncate w-40">
-                    {chat?.latestMessage?.content}
-                  </p>
-                </div>
-              </div>
-
-              {/* Time & Unread Messages */}
-              <div className="text-right">
-                <p className="text-sm text-gray-400">{chat?.time}11:23</p>
-                {/* {chat.unread > 0 && (
+                {/* Time & Unread Messages */}
+                <div className="text-right">
+                  <p className="text-sm text-gray-400">{messageTime}</p>
+                  {/* {chat.unread > 0 && (
                 <span className="badge badge-primary">{chat.unread}</span>
               )} */}
+                </div>
               </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <div className="space-y-2">
             {Array(10)
