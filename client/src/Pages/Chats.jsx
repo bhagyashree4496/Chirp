@@ -11,7 +11,14 @@ import AddGroupModal from "../components/AddGroupModal";
 import EditGroupModal from "../components/EditGroupModal";
 import bgimg1 from "../assets/bgimg2.jpg";
 function Chats() {
-  const { user, setSelectedChat, notifications, setnotifications } = useUser();
+  const {
+    user,
+    chats,
+    setChats,
+    setSelectedChat,
+    notifications,
+    setnotifications,
+  } = useUser();
   const [notifNumb, setNotifNumb] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
@@ -35,14 +42,14 @@ function Chats() {
           <div className="dropdown dropdown-end">
             <div className="indicator">
               {notifNumb > 0 && (
-                <span className="indicator-item badge badge-primary">
+                <span className="indicator-item badge badge-primary ">
                   {notifNumb}
                 </span>
               )}
               <div
                 tabIndex={0}
                 role="button"
-                className="rounded-full bg-black  btn "
+                className="rounded-full bg-primary text-white  btn "
               >
                 <IoIosNotifications />
               </div>
@@ -61,6 +68,7 @@ function Chats() {
                       const temp = notifications.filter(
                         (not) => not._id !== n._id
                       );
+                      setChats([...chats, n.chat]);
                       setnotifications([...temp]);
                     }}
                   >
@@ -75,7 +83,11 @@ function Chats() {
           </div>
 
           <div className="dropdown dropdown-end">
-            <div tabIndex={0} role="button" className="btn m-1">
+            <div
+              tabIndex={0}
+              role="button"
+              className="btn m-1 bg-primary text-white"
+            >
               <FaRegUser />
               <MdArrowDropDown />
             </div>
